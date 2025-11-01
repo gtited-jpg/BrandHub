@@ -1,0 +1,5 @@
+{
+  "name": "BrandHub",
+  "description": "A SaaS web application to manage all your brands in one universe. Built with React, Tailwind CSS, and Supabase for a seamless and beautiful user experience.",
+  "requestFramePermissions": []
+}

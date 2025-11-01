@@ -1,0 +1,64 @@
+import Link from 'next/link';
+import { signup } from './actions';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { Label } from '@/components/ui/Label';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
+
+export default function SignupPage({
+  searchParams,
+}: {
+  searchParams: { message: string, type: 'success' | 'error' };
+}) {
+  return (
+     <div className="flex items-center justify-center py-12 animate-fade-in">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold font-display">Create an Account</CardTitle>
+          <CardDescription>Join the BrandHub universe. It's free!</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+                required
+                minLength={6}
+              />
+            </div>
+            {searchParams.message && (
+              <p className={searchParams.type === 'success' ? 'text-green-400 text-sm' : 'text-red-400 text-sm'}>
+                {searchParams.message}
+              </p>
+            )}
+            <Button formAction={signup} className="w-full">
+              Create Account
+            </Button>
+          </form>
+        </CardContent>
+        <CardFooter className="text-center text-sm">
+          <p className="w-full">
+            Already have an account?{' '}
+            <Link href="/login" className="font-medium text-primary hover:underline">
+              Login
+            </Link>
+          </p>
+        </CardFooter>
+      </Card>
+    </div>
+  );
+}
